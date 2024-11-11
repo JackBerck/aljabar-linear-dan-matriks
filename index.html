@@ -3,26 +3,74 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kalkulator Matriks Dinamis</title>
-    <link href="./output.css" rel="stylesheet" />
+    <title>Kalkulator Matriks | Aljabar Linear dan Matriks</title>
+    <!-- <link href="./output.css" rel="stylesheet" /> -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class", // Ubah ini menjadi 'class'
+        content: ["index.html", "./src/**/*.{html,js}"],
+        theme: {
+          extend: {
+            container: {
+              center: true,
+            },
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+        plugins: [],
+      };
+    </script>
   </head>
-  <body class="font-poppins">
-    <div
-      class="container max-w-screen-lg mt-16 mb-16 px-4 py-4 md:py-8 md:px-8 bg-slate-100 shadow-sm rounded-md text-sm lg:text-base xl:text-lg"
+  <body class="font-poppins bg-slate-50 dark:bg-slate-800">
+    <button
+      id="theme-toggle"
+      type="button"
+      class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5 absolute top-2 right-2"
     >
-      <div class="flex flex-col gap-2">
+      <svg
+        id="theme-toggle-dark-icon"
+        class="hidden w-6 h-6 md:w-8 md:h-8"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+        ></path>
+      </svg>
+      <svg
+        id="theme-toggle-light-icon"
+        class="hidden w-6 h-6 md:w-8 md:h-8 text-yellow-300"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
+    </button>
+    <div
+      class="container max-w-screen-lg mt-16 mb-16 px-4 py-4 md:py-8 md:px-8 text-slate-900 bg-slate-100 dark:bg-slate-900 dark:text-slate-100 shadow-sm rounded-md text-sm lg:text-base xl:text-lg"
+    >
+      <div class="flex flex-col gap-4">
         <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl">
           Kalkulator Matriks
         </h1>
-        <div class="flex flex-wrap lg:gap-16 md:gap-8 gap-4">
+        <div class="flex flex-wrap lg:gap-8 md:gap-2 gap-4">
           <!-- Matriks A -->
-          <div class="bg-blue-200 px-6 py-4 rounded-md">
+          <div class="bg-blue-200 px-6 py-4 rounded-md dark:bg-blue-700">
             <h2 class="font-semibold text-xl md:text-2xl lg:text-3xl">
               Matriks A
             </h2>
@@ -35,7 +83,7 @@
                   value="2"
                   min="1"
                   max="3"
-                  class="w-full px-2 py-1 rounded-md"
+                  class="w-full px-2 py-1 rounded-md dark:text-blue-900"
                 />
               </div>
               <div class="max-w-16">
@@ -46,7 +94,7 @@
                   value="2"
                   min="1"
                   max="3"
-                  class="w-full px-2 py-1 rounded-md"
+                  class="w-full px-2 py-1 rounded-md dark:text-blue-900"
                 />
               </div>
               <button
@@ -61,30 +109,56 @@
                 <input
                   type="number"
                   id="A-0-0"
-                  class="max-w-20 px-2 py-1 border rounded-md"
+                  class="max-w-20 px-2 py-1 border rounded-md dark:text-slate-900"
                 />
                 <input
                   type="number"
                   id="A-0-1"
-                  class="max-w-20 px-2 py-1 border rounded-md"
+                  class="max-w-20 px-2 py-1 border rounded-md dark:text-slate-900"
                 />
               </div>
               <div class="flex gap-2">
                 <input
                   type="number"
                   id="A-1-0"
-                  class="max-w-20 px-2 py-1 border rounded-md"
+                  class="max-w-20 px-2 py-1 border rounded-md dark:text-slate-900"
                 />
                 <input
                   type="number"
                   id="A-1-1"
-                  class="max-w-20 px-2 py-1 border rounded-md"
+                  class="max-w-20 px-2 py-1 border rounded-md dark:text-slate-900"
                 />
               </div>
             </div>
+            <div class="mt-4 flex flex-wrap gap-1 text-xs md:text-sm">
+              <button
+                onclick="clearMatrix('A')"
+                class="bg-blue-600 dark:bg-blue-900 text-slate-100 px-2 py-1 rounded-md"
+              >
+                Bersihkan
+              </button>
+              <button
+                onclick="fillMatrixWithOnes('A')"
+                class="bg-blue-600 dark:bg-blue-900 text-slate-100 px-2 py-1 rounded-md"
+              >
+                Semua 1
+              </button>
+              <button
+                onclick="fillMatrixWithRandom('A')"
+                class="bg-blue-600 dark:bg-blue-900 text-slate-100 px-2 py-1 rounded-md"
+              >
+                Acak
+              </button>
+              <button
+                onclick="fillMatrixWithIdentity('A')"
+                class="bg-blue-600 dark:bg-blue-900 text-slate-100 px-2 py-1 rounded-md"
+              >
+                Identitas
+              </button>
+            </div>
           </div>
           <!-- Matriks B -->
-          <div class="bg-blue-200 px-6 py-4 rounded-md">
+          <div class="bg-blue-200 px-6 py-4 rounded-md dark:bg-blue-700">
             <h2 class="font-semibold text-xl md:text-2xl lg:text-3xl">
               Matriks B
             </h2>
@@ -97,7 +171,7 @@
                   value="2"
                   min="1"
                   max="3"
-                  class="w-full px-2 py-1 rounded-md"
+                  class="w-full px-2 py-1 rounded-md dark:text-blue-900"
                 />
               </div>
               <div class="max-w-16">
@@ -108,7 +182,7 @@
                   value="2"
                   min="1"
                   max="3"
-                  class="w-full px-2 py-1 rounded-md"
+                  class="w-full px-2 py-1 rounded-md dark:text-blue-900"
                 />
               </div>
               <button
@@ -123,30 +197,55 @@
                 <input
                   type="number"
                   id="B-0-0"
-                  class="max-w-20 px-2 py-1 border rounded-md"
+                  class="max-w-20 px-2 py-1 border rounded-md dark:text-slate-900"
                 />
                 <input
                   type="number"
                   id="B-0-1"
-                  class="max-w-20 px-2 py-1 border rounded-md"
+                  class="max-w-20 px-2 py-1 border rounded-md dark:text-slate-900"
                 />
               </div>
               <div class="flex gap-2">
                 <input
                   type="number"
                   id="B-1-0"
-                  class="max-w-20 px-2 py-1 border rounded-md"
+                  class="max-w-20 px-2 py-1 border rounded-md dark:text-slate-900"
                 />
                 <input
                   type="number"
                   id="B-1-1"
-                  class="max-w-20 px-2 py-1 border rounded-md"
+                  class="max-w-20 px-2 py-1 border rounded-md dark:text-slate-900"
                 />
               </div>
             </div>
+            <div class="mt-4 flex flex-wrap gap-1 text-xs md:text-sm">
+              <button
+                onclick="clearMatrix('B')"
+                class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md dark:bg-blue-900"
+              >
+                Bersihkan
+              </button>
+              <button
+                onclick="fillMatrixWithOnes('B')"
+                class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md dark:bg-blue-900"
+              >
+                Semua 1
+              </button>
+              <button
+                onclick="fillMatrixWithRandom('B')"
+                class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md dark:bg-blue-900"
+              >
+                Acak
+              </button>
+              <button
+                onclick="fillMatrixWithIdentity('B')"
+                class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md dark:bg-blue-900"
+              >
+                Identitas
+              </button>
+            </div>
           </div>
         </div>
-
         <!-- Operasi Matriks -->
         <div class="">
           <h2
@@ -157,39 +256,50 @@
           <div class="flex flex-wrap gap-2 md:gap-4">
             <button
               onclick="calculate('add')"
-              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md"
+              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md dark:bg-blue-900"
             >
               Tambah (A + B)
             </button>
             <button
               onclick="calculate('subtract')"
-              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md"
+              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md dark:bg-blue-900"
             >
               Kurangi (A - B)
             </button>
             <button
               onclick="calculate('multiply')"
-              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md"
+              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md dark:bg-blue-900"
             >
               Kali (AB)
             </button>
             <button
               onclick="calculateDeterminant('A')"
-              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md"
+              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md dark:bg-blue-900"
             >
               Determinan A
             </button>
             <button
               onclick="calculateDeterminant('B')"
-              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md"
+              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md dark:bg-blue-900"
             >
               Determinan B
             </button>
+            <button
+              onclick="calculateInvers('A')"
+              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md dark:bg-blue-900"
+            >
+              Invers A
+            </button>
+            <button
+              onclick="calculateInvers('B')"
+              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md dark:bg-blue-900"
+            >
+              Invers B
+            </button>
           </div>
         </div>
-
         <!-- Hasil -->
-        <div class="bg-blue-200 px-6 py-4 rounded-md w-fit">
+        <div class="bg-blue-200 px-6 py-4 rounded-md w-fit dark:bg-blue-700">
           <h2 class="font-semibold text-xl md:text-2xl lg:text-3xl">
             Hasil Matriks
           </h2>
@@ -200,9 +310,61 @@
         </div>
       </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
     <script>
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+      const themeToggleDarkIcon = document.getElementById(
+        "theme-toggle-dark-icon"
+      );
+      const themeToggleLightIcon = document.getElementById(
+        "theme-toggle-light-icon"
+      );
+
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+        themeToggleLightIcon.classList.remove("hidden");
+      } else {
+        document.documentElement.classList.remove("dark");
+        themeToggleDarkIcon.classList.remove("hidden");
+      }
+
+      const themeToggleBtn = document.getElementById("theme-toggle");
+
+      themeToggleBtn.addEventListener("click", function () {
+        themeToggleDarkIcon.classList.toggle("hidden");
+        themeToggleLightIcon.classList.toggle("hidden");
+
+        if (localStorage.getItem("color-theme")) {
+          if (localStorage.getItem("color-theme") === "light") {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          }
+        } else {
+          if (document.documentElement.classList.contains("dark")) {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          } else {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          }
+        }
+      });
+
       function generateMatrix(matrixId) {
         const rows = document.getElementById(`rows${matrixId}`).value;
         const cols = document.getElementById(`cols${matrixId}`).value;
@@ -291,6 +453,28 @@
         displayResult([[determinant]]);
       }
 
+      function calculateInvers(matrixId) {
+        const rows = parseInt(document.getElementById(`rows${matrixId}`).value);
+        const cols = parseInt(document.getElementById(`cols${matrixId}`).value);
+
+        if (rows !== cols) {
+          alert(
+            `Invers hanya bisa dihitung untuk matriks persegi (contoh: 2x2, 3x3).`
+          );
+          return;
+        }
+
+        const matrix = getMatrixValues(matrixId, rows, cols);
+        let result;
+        try {
+          result = math.inv(matrix);
+        } catch (error) {
+          result = `Error: ${error.message}`;
+        }
+
+        displayResult(result);
+      }
+
       function displayResult(result) {
         const container = document.getElementById("resultContainer");
         container.innerHTML = "";
@@ -312,6 +496,81 @@
           container.textContent = result;
         }
       }
+
+      function clearMatrix(matrixId) {
+        const rows = document.getElementById(`rows${matrixId}`).value;
+        const cols = document.getElementById(`cols${matrixId}`).value;
+        for (let i = 0; i < rows; i++) {
+          for (let j = 0; j < cols; j++) {
+            document.getElementById(`${matrixId}-${i}-${j}`).value = "";
+          }
+        }
+      }
+
+      function fillMatrixWithOnes(matrixId) {
+        const rows = document.getElementById(`rows${matrixId}`).value;
+        const cols = document.getElementById(`cols${matrixId}`).value;
+        for (let i = 0; i < rows; i++) {
+          for (let j = 0; j < cols; j++) {
+            document.getElementById(`${matrixId}-${i}-${j}`).value = 1;
+          }
+        }
+      }
+
+      function fillMatrixWithRandom(matrixId) {
+        const rows = document.getElementById(`rows${matrixId}`).value;
+        const cols = document.getElementById(`cols${matrixId}`).value;
+        for (let i = 0; i < rows; i++) {
+          for (let j = 0; j < cols; j++) {
+            document.getElementById(`${matrixId}-${i}-${j}`).value = Math.floor(
+              Math.random() * 10
+            );
+          }
+        }
+      }
+
+      function fillMatrixWithIdentity(matrixId) {
+        const rows = document.getElementById(`rows${matrixId}`).value;
+        const cols = document.getElementById(`cols${matrixId}`).value;
+        if (rows !== cols) {
+          alert("Matriks identitas hanya bisa dibuat untuk matriks persegi.");
+          return;
+        }
+        for (let i = 0; i < rows; i++) {
+          for (let j = 0; j < cols; j++) {
+            document.getElementById(`${matrixId}-${i}-${j}`).value =
+              i === j ? 1 : 0;
+          }
+        }
+      }
+
+      function validateInput(matrixId) {
+        const rowsInput = document.getElementById(`rows${matrixId}`);
+        const colsInput = document.getElementById(`cols${matrixId}`);
+        let rows = parseInt(rowsInput.value);
+        let cols = parseInt(colsInput.value);
+
+        if (rows < 1 || rows > 3 || cols < 1 || cols > 3) {
+          alert(
+            "Baris dan kolom harus antara 1 dan 3. Nilai akan direset ke 2."
+          );
+          rowsInput.value = 2;
+          colsInput.value = 2;
+        }
+      }
+
+      document
+        .getElementById("rowsA")
+        .addEventListener("change", () => validateInput("A"));
+      document
+        .getElementById("colsA")
+        .addEventListener("change", () => validateInput("A"));
+      document
+        .getElementById("rowsB")
+        .addEventListener("change", () => validateInput("B"));
+      document
+        .getElementById("colsB")
+        .addEventListener("change", () => validateInput("B"));
     </script>
   </body>
 </html>
