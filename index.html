@@ -1,151 +1,317 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalkulator Matriks Dinamis</title>
-</head>
-<body>
-<h2>Kalkulator Matriks</h2>
+    <link href="./output.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="font-poppins">
+    <div
+      class="container max-w-screen-lg mt-16 mb-16 px-4 py-4 md:py-8 md:px-8 bg-slate-100 shadow-sm rounded-md text-sm lg:text-base xl:text-lg"
+    >
+      <div class="flex flex-col gap-2">
+        <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl">
+          Kalkulator Matriks
+        </h1>
+        <div class="flex flex-wrap lg:gap-16 md:gap-8 gap-4">
+          <!-- Matriks A -->
+          <div class="bg-blue-200 px-6 py-4 rounded-md">
+            <h2 class="font-semibold text-xl md:text-2xl lg:text-3xl">
+              Matriks A
+            </h2>
+            <div class="flex gap-6">
+              <div class="max-w-16">
+                <label for="rowsA">Baris: </label>
+                <input
+                  type="number"
+                  id="rowsA"
+                  value="2"
+                  min="1"
+                  max="3"
+                  class="w-full px-2 py-1 rounded-md"
+                />
+              </div>
+              <div class="max-w-16">
+                <label for="colsA">Kolom: </label>
+                <input
+                  type="number"
+                  id="colsA"
+                  value="2"
+                  min="1"
+                  max="3"
+                  class="w-full px-2 py-1 rounded-md"
+                />
+              </div>
+              <button
+                onclick="generateMatrix('A')"
+                class="bg-blue-600 self-end text-slate-100 px-2 py-1 rounded-md"
+              >
+                Set Ordo
+              </button>
+            </div>
+            <div id="matrixAContainer" class="flex flex-col gap-2 mt-4">
+              <div class="flex gap-2">
+                <input
+                  type="number"
+                  id="A-0-0"
+                  class="max-w-20 px-2 py-1 border rounded-md"
+                />
+                <input
+                  type="number"
+                  id="A-0-1"
+                  class="max-w-20 px-2 py-1 border rounded-md"
+                />
+              </div>
+              <div class="flex gap-2">
+                <input
+                  type="number"
+                  id="A-1-0"
+                  class="max-w-20 px-2 py-1 border rounded-md"
+                />
+                <input
+                  type="number"
+                  id="A-1-1"
+                  class="max-w-20 px-2 py-1 border rounded-md"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- Matriks B -->
+          <div class="bg-blue-200 px-6 py-4 rounded-md">
+            <h2 class="font-semibold text-xl md:text-2xl lg:text-3xl">
+              Matriks B
+            </h2>
+            <div class="flex gap-6">
+              <div class="max-w-16">
+                <label for="rowsB">Baris: </label>
+                <input
+                  type="number"
+                  id="rowsB"
+                  value="2"
+                  min="1"
+                  max="3"
+                  class="w-full px-2 py-1 rounded-md"
+                />
+              </div>
+              <div class="max-w-16">
+                <label for="colsB">Kolom: </label>
+                <input
+                  type="number"
+                  id="colsB"
+                  value="2"
+                  min="1"
+                  max="3"
+                  class="w-full px-2 py-1 rounded-md"
+                />
+              </div>
+              <button
+                onclick="generateMatrix('B')"
+                class="bg-blue-600 self-end text-slate-100 px-2 py-1 rounded-md"
+              >
+                Set Ordo
+              </button>
+            </div>
+            <div id="matrixBContainer" class="flex flex-col gap-2 mt-4">
+              <div class="flex gap-2">
+                <input
+                  type="number"
+                  id="B-0-0"
+                  class="max-w-20 px-2 py-1 border rounded-md"
+                />
+                <input
+                  type="number"
+                  id="B-0-1"
+                  class="max-w-20 px-2 py-1 border rounded-md"
+                />
+              </div>
+              <div class="flex gap-2">
+                <input
+                  type="number"
+                  id="B-1-0"
+                  class="max-w-20 px-2 py-1 border rounded-md"
+                />
+                <input
+                  type="number"
+                  id="B-1-1"
+                  class="max-w-20 px-2 py-1 border rounded-md"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
-<!-- Matriks A -->
-<div>
-    <h3>Matriks A</h3>
-    <label>Baris: <input type="number" id="rowsA" value="2" min="1"></label>
-    <label>Kolom: <input type="number" id="colsA" value="2" min="1"></label>
-    <button onclick="generateMatrix('A')">Set Ordo</button>
-    <div id="matrixAContainer"></div>
-</div>
+        <!-- Operasi Matriks -->
+        <div class="">
+          <h2
+            class="font-semibold text-xl md:text-2xl lg:text-3xl mb-1 md:mb-2"
+          >
+            Operasi
+          </h2>
+          <div class="flex flex-wrap gap-2 md:gap-4">
+            <button
+              onclick="calculate('add')"
+              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md"
+            >
+              Tambah (A + B)
+            </button>
+            <button
+              onclick="calculate('subtract')"
+              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md"
+            >
+              Kurangi (A - B)
+            </button>
+            <button
+              onclick="calculate('multiply')"
+              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md"
+            >
+              Kali (AB)
+            </button>
+            <button
+              onclick="calculateDeterminant('A')"
+              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md"
+            >
+              Determinan A
+            </button>
+            <button
+              onclick="calculateDeterminant('B')"
+              class="bg-blue-600 text-slate-100 px-2 py-1 rounded-md"
+            >
+              Determinan B
+            </button>
+          </div>
+        </div>
 
-<!-- Matriks B -->
-<div>
-    <h3>Matriks B</h3>
-    <label>Baris: <input type="number" id="rowsB" value="2" min="1"></label>
-    <label>Kolom: <input type="number" id="colsB" value="2" min="1"></label>
-    <button onclick="generateMatrix('B')">Set Ordo</button>
-    <div id="matrixBContainer"></div>
-</div>
+        <!-- Hasil -->
+        <div class="bg-blue-200 px-6 py-4 rounded-md w-fit">
+          <h2 class="font-semibold text-xl md:text-2xl lg:text-3xl">
+            Hasil Matriks
+          </h2>
+          <div
+            id="resultContainer"
+            class="flex flex-col gap-2 mt-1 md:mt-2"
+          ></div>
+        </div>
+      </div>
+    </div>
 
-<!-- Operasi Matriks -->
-<div>
-    <h3>Operasi</h3>
-    <button onclick="calculate('add')">Tambah (A + B)</button>
-    <button onclick="calculate('subtract')">Kurangi (A - B)</button>
-    <button onclick="calculate('multiply')">Kali (A * B)</button>
-    <button onclick="calculateDeterminant('A')">Determinan A</button>
-    <button onclick="calculateDeterminant('B')">Determinan B</button>
-</div>
-
-<!-- Hasil -->
-<div>
-    <h3>Hasil Matriks</h3>
-    <div id="resultContainer"></div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
-<script>
-    function generateMatrix(matrixId) {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
+    <script>
+      function generateMatrix(matrixId) {
         const rows = document.getElementById(`rows${matrixId}`).value;
         const cols = document.getElementById(`cols${matrixId}`).value;
         const container = document.getElementById(`matrix${matrixId}Container`);
-        container.innerHTML = '';
+        container.innerHTML = "";
 
         for (let i = 0; i < rows; i++) {
-            const row = document.createElement('div');
-            for (let j = 0; j < cols; j++) {
-                const input = document.createElement('input');
-                input.type = 'number';
-                input.id = `${matrixId}-${i}-${j}`;
-                input.style.width = '50px';
-                row.appendChild(input);
-            }
-            container.appendChild(row);
+          const row = document.createElement("div");
+          row.className = "flex gap-2";
+          for (let j = 0; j < cols; j++) {
+            const input = document.createElement("input");
+            input.type = "number";
+            input.id = `${matrixId}-${i}-${j}`;
+            input.className = "max-w-20 px-2 py-1 border rounded-md";
+            row.appendChild(input);
+          }
+          container.appendChild(row);
         }
-    }
+      }
 
-    function getMatrixValues(matrixId, rows, cols) {
+      function getMatrixValues(matrixId, rows, cols) {
         const matrix = [];
         for (let i = 0; i < rows; i++) {
-            const row = [];
-            for (let j = 0; j < cols; j++) {
-                row.push(Number(document.getElementById(`${matrixId}-${i}-${j}`).value) || 0);
-            }
-            matrix.push(row);
+          const row = [];
+          for (let j = 0; j < cols; j++) {
+            row.push(
+              Number(document.getElementById(`${matrixId}-${i}-${j}`).value) ||
+                0
+            );
+          }
+          matrix.push(row);
         }
         return matrix;
-    }
+      }
 
-    function calculate(operation) {
-        const rowsA = parseInt(document.getElementById('rowsA').value);
-        const colsA = parseInt(document.getElementById('colsA').value);
-        const rowsB = parseInt(document.getElementById('rowsB').value);
-        const colsB = parseInt(document.getElementById('colsB').value);
+      function calculate(operation) {
+        const rowsA = parseInt(document.getElementById("rowsA").value);
+        const colsA = parseInt(document.getElementById("colsA").value);
+        const rowsB = parseInt(document.getElementById("rowsB").value);
+        const colsB = parseInt(document.getElementById("colsB").value);
 
-        const matrixA = getMatrixValues('A', rowsA, colsA);
-        const matrixB = getMatrixValues('B', rowsB, colsB);
+        const matrixA = getMatrixValues("A", rowsA, colsA);
+        const matrixB = getMatrixValues("B", rowsB, colsB);
         let result;
 
         try {
-            switch (operation) {
-                case 'add':
-                    result = math.add(matrixA, matrixB);
-                    break;
-                case 'subtract':
-                    result = math.subtract(matrixA, matrixB);
-                    break;
-                case 'multiply':
-                    result = math.multiply(matrixA, matrixB);
-                    break;
-                default:
-                    result = 'Operasi tidak valid!';
-            }
+          switch (operation) {
+            case "add":
+              result = math.add(matrixA, matrixB);
+              break;
+            case "subtract":
+              result = math.subtract(matrixA, matrixB);
+              break;
+            case "multiply":
+              result = math.multiply(matrixA, matrixB);
+              break;
+            default:
+              result = "Operasi tidak valid!";
+          }
         } catch (error) {
-            result = `Error: ${error.message}`;
+          result = `Error: ${error.message}`;
         }
 
         displayResult(result);
-    }
+      }
 
-    function calculateDeterminant(matrixId) {
+      function calculateDeterminant(matrixId) {
         const rows = parseInt(document.getElementById(`rows${matrixId}`).value);
         const cols = parseInt(document.getElementById(`cols${matrixId}`).value);
 
         if (rows !== cols) {
-            alert(`Determinan hanya bisa dihitung untuk matriks persegi (contoh: 2x2, 3x3).`);
-            return;
+          alert(
+            `Determinan hanya bisa dihitung untuk matriks persegi (contoh: 2x2, 3x3).`
+          );
+          return;
         }
 
         const matrix = getMatrixValues(matrixId, rows, cols);
         let determinant;
         try {
-            determinant = math.det(matrix);
+          determinant = math.det(matrix);
         } catch (error) {
-            determinant = `Error: ${error.message}`;
+          determinant = `Error: ${error.message}`;
         }
 
         displayResult([[determinant]]);
-    }
+      }
 
-    function displayResult(result) {
-        const container = document.getElementById('resultContainer');
-        container.innerHTML = '';
+      function displayResult(result) {
+        const container = document.getElementById("resultContainer");
+        container.innerHTML = "";
         if (Array.isArray(result)) {
-            result.forEach(row => {
-                const rowDiv = document.createElement('div');
-                row.forEach(value => {
-                    const input = document.createElement('input');
-                    input.type = 'number';
-                    input.value = value;
-                    input.readOnly = true;
-                    input.style.width = '50px';
-                    rowDiv.appendChild(input);
-                });
-                container.appendChild(rowDiv);
+          result.forEach((row) => {
+            const rowDiv = document.createElement("div");
+            rowDiv.className = "flex gap-2";
+            row.forEach((value) => {
+              const input = document.createElement("input");
+              input.type = "number";
+              input.value = value;
+              input.readOnly = true;
+              input.className = "max-w-20 px-2 py-1 border rounded-md";
+              rowDiv.appendChild(input);
             });
+            container.appendChild(rowDiv);
+          });
         } else {
-            container.textContent = result;
+          container.textContent = result;
         }
-    }
-</script>
-</body>
+      }
+    </script>
+  </body>
 </html>
