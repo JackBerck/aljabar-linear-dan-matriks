@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalkulator Matriks | Aljabar Linear dan Matriks</title>
-    <!-- <link href="./output.css" rel="stylesheet" /> -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,7 +13,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
-        darkMode: "class", // Ubah ini menjadi 'class'
+        darkMode: "class",
         content: ["index.html", "./src/**/*.{html,js}"],
         theme: {
           extend: {
@@ -378,7 +377,7 @@
             const input = document.createElement("input");
             input.type = "number";
             input.id = `${matrixId}-${i}-${j}`;
-            input.className = "max-w-20 px-2 py-1 border rounded-md";
+            input.className = "max-w-20 px-2 py-1 border rounded-md dark:text-blue-700";
             row.appendChild(input);
           }
           container.appendChild(row);
